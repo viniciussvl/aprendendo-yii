@@ -12,7 +12,9 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -25,6 +27,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
 
 <div class="wrap">
     <?php
@@ -64,7 +67,9 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+
         <?= $content ?>
+
     </div>
 </div>
 

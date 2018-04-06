@@ -2,9 +2,27 @@
 
 /* @var $this yii\web\View */
 
+use app\widgets\HelloWidget;
+use yii\jui\DatePicker;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
+
+    <!-- Widget datepicker -->
+    <div class="col-md-12">
+        Variaveis vindo do controller: <strong><?= $nome . ' ' . $sobrenome; ?></strong>
+        <?= DatePicker::widget([
+            'name' => 'data_venda',
+            'language' => 'pt',
+            'dateFormat' => 'dd/MM/yyyy'
+        ]) ?>
+    </div>
+
+    <!-- Widget personalizavel -->
+    <div class="col-md-12">
+        <?= HelloWidget::widget(); ?>
+    </div>
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>

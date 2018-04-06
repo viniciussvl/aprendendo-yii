@@ -35,6 +35,7 @@ class PessoaController extends Controller
      */
     public function actionIndex()
     {
+
         $searchModel = new PessoaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
