@@ -43,7 +43,11 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
+            'loginUrl' => ['site/meuLogin'],
             'enableAutoLogin' => true,
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

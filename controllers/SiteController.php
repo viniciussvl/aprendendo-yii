@@ -61,10 +61,62 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        // Authorization
+        $auth =  Yii::$app->authManager;
+        $admin = $auth->createRole('administrador');
+        $supervisor = $auth->createRole('surpervisor');
+        $operador = $auth->createRole('operador');
+
+        $auth->add($admin);
+        $auth->add($supervisor);
+        $auth->add($operador);
+
+        $viewPost = $auth->createPermission('post-index');
+        $addPost = $auth->createPermission('post-create');
+        $editPost = $auth->createPermission('post-edit');
+        $deletePost = $auth->createPermission('post-delete');
+
+        $auth->add($viewPost);
+        $auth->add($addPost);
+        $auth->add($editPost);
+        $auth->add($deletePost);
+
+
+        $auth->addChild($admin, $viewPost);
+        $auth->addChild($admin, $addPost);
+        $auth->addChild($admin, $editPost);
+        $auth->addChild($admin, $deletePost);
+        
+        
+        $auth->addChild($supervisor, $addPost);
+        $auth->addChild($supervisor, $editPost);
+        $auth->addChild($supervisor, $viewPost);
+
+        $auth->addChild($operador, $viewPost);
+
+        $auth->assign($admin, 1); // Vinicius Aquino
+        $auth->assign($supervisor, 2); // Fernando
+        $auth->assign($operador, 3); // Maria
+
+
         return $this->render('index', [
             'nome' => 'Vinicius',
             'sobrenome' => 'Aquino'
         ]);
+    }
+
+    public function actionPermission($userId){
+        $auth = Yii::$app->authManager;
+
+        $per = Yii::$app->user->can('post-index');
+        echo $per;
+
+
+        echo "<p>View Post: {$auth->checkAccess($userId, 'post-index')}</p>";
+        echo "<p>Edit Post: {$auth->checkAccess($userId, 'post-edit')}</p>";
+        echo "<p>Add Post: {$auth->checkAccess($userId, 'post-create')}</p>";
+        echo "<p>Delete Post: {$auth->checkAccess($userId, 'post-delete')}</p>";
     }
 
     /**
