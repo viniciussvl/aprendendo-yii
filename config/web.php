@@ -11,6 +11,7 @@ $config = [
         '@meualias1' => 'path/to/meu/alias1'
     ],
     'language' => 'pt',
+    'sourceLanguage' => 'pt-BR',
     'timeZone' => 'America/Fortaleza',
     'charset' => 'UTF-8',
     /*'catchAll' => [
@@ -28,6 +29,10 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'BiipOkZ3t2aerYNEC3c7RKxdXGNIs9uo',
+        ],
+        'formatter' => [
+            'class' => 'app\classes\components\MyFormatter',
+            'dateFormat' => 'dd/MM/y'
         ],
         'myComponent' => [
             'class' => 'yii\classes\components\MyComponent',
